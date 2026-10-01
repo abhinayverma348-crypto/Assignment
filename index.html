@@ -1,0 +1,554 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Product Card & Product Grid</title>
+
+    <!-- ================= CSS ================= -->
+    <style>
+
+        /* Remove default margin and padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            background-color: #222;
+            color: white;
+            padding: 30px 20px;
+        }
+
+        header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 16px;
+        }
+
+        /* Product Grid */
+        .product-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 40px auto;
+
+            display: grid;
+
+            /* Desktop - 3 columns */
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 25px;
+        }
+
+        /* Product Card */
+        .product-card {
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+
+            transition: transform 0.3s ease,
+                        box-shadow 0.3s ease;
+        }
+
+        /* Card Hover Effect */
+        .product-card:hover {
+            transform: translateY(-8px);
+
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.20);
+        }
+
+        /* Product Image */
+        .product-card img {
+            width: 100%;
+            height: 220px;
+
+            object-fit: cover;
+            display: block;
+
+            transition: transform 0.3s ease;
+        }
+
+        /* Image Hover */
+        .product-card:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Product Information */
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-info h2 {
+            font-size: 21px;
+            margin-bottom: 10px;
+            color: #222;
+        }
+
+        /* Description */
+        .description {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+
+            margin-bottom: 15px;
+        }
+
+        /* Rating */
+        .rating {
+            margin-bottom: 15px;
+            font-size: 15px;
+        }
+
+        .rating span {
+            color: #555;
+            margin-left: 5px;
+        }
+
+        /* Price */
+        .price {
+            font-size: 21px;
+            font-weight: bold;
+
+            color: #111;
+            margin-bottom: 15px;
+        }
+
+        /* Old Price */
+        .old-price {
+            font-size: 14px;
+            color: #888;
+
+            text-decoration: line-through;
+            margin-left: 8px;
+        }
+
+        /* Discount */
+        .discount {
+            font-size: 12px;
+
+            background-color: #dff7e3;
+            color: #198754;
+
+            padding: 5px 7px;
+
+            border-radius: 5px;
+            margin-left: 5px;
+        }
+
+        /* Buy Now Button */
+        .product-info button {
+            width: 100%;
+
+            padding: 12px;
+
+            border: none;
+            border-radius: 7px;
+
+            background-color: #007bff;
+            color: white;
+
+            font-size: 16px;
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: background-color 0.3s,
+                        transform 0.2s;
+        }
+
+        /* Button Hover */
+        .product-info button:hover {
+            background-color: #0056b3;
+            transform: scale(1.02);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+
+            background-color: #222;
+            color: white;
+
+            padding: 20px;
+
+            margin-top: 40px;
+        }
+
+        /* ================= TABLET ================= */
+
+        @media (max-width: 900px) {
+
+            .product-container {
+
+                /* Tablet - 2 columns */
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 600px) {
+
+            header h1 {
+                font-size: 25px;
+            }
+
+            .product-container {
+
+                /* Mobile - 1 column */
+                grid-template-columns: 1fr;
+
+                width: 92%;
+            }
+
+            .product-card img {
+                height: 240px;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header>
+
+        <h1>🛍️ My Product Store</h1>
+
+        <p>
+            Find the best products at the best prices
+        </p>
+
+    </header>
+
+
+    <!-- ================= PRODUCT GRID ================= -->
+
+    <main class="product-container">
+
+
+        <!-- Product 1 -->
+
+        <div class="product-card">
+
+            <img
+                src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80"
+                alt="Running Shoes"
+            >
+
+            <div class="product-info">
+
+                <h2>Running Shoes</h2>
+
+                <p class="description">
+                    Comfortable and stylish running shoes for daily use.
+                </p>
+
+                <div class="rating">
+                    ⭐⭐⭐⭐⭐
+                    <span>4.8</span>
+                </div>
+
+                <p class="price">
+
+                    ₹1,999
+
+                    <span class="old-price">
+                        ₹2,999
+                    </span>
+
+                    <span class="discount">
+                        33% OFF
+                    </span>
+
+                </p>
+
+                <button onclick="buyProduct('Running Shoes')">
+                    Buy Now
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- Product 2 -->
+
+        <div class="product-card">
+
+            <img
+                src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=600&q=80"
+                alt="Wireless Headphones"
+            >
+
+            <div class="product-info">
+
+                <h2>Wireless Headphones</h2>
+
+                <p class="description">
+                    High-quality wireless headphones with clear sound.
+                </p>
+
+                <div class="rating">
+                    ⭐⭐⭐⭐☆
+                    <span>4.5</span>
+                </div>
+
+                <p class="price">
+
+                    ₹2,499
+
+                    <span class="old-price">
+                        ₹3,999
+                    </span>
+
+                    <span class="discount">
+                        37% OFF
+                    </span>
+
+                </p>
+
+                <button onclick="buyProduct('Wireless Headphones')">
+                    Buy Now
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- Product 3 -->
+
+        <div class="product-card">
+
+            <img
+                src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=80"
+                alt="Smart Watch"
+            >
+
+            <div class="product-info">
+
+                <h2>Smart Watch</h2>
+
+                <p class="description">
+                    Smart watch with fitness tracking and notifications.
+                </p>
+
+                <div class="rating">
+                    ⭐⭐⭐⭐⭐
+                    <span>4.7</span>
+                </div>
+
+                <p class="price">
+
+                    ₹3,499
+
+                    <span class="old-price">
+                        ₹5,999
+                    </span>
+
+                    <span class="discount">
+                        42% OFF
+                    </span>
+
+                </p>
+
+                <button onclick="buyProduct('Smart Watch')">
+                    Buy Now
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- Product 4 -->
+
+        <div class="product-card">
+
+            <img
+                src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80"
+                alt="Smartphone"
+            >
+
+            <div class="product-info">
+
+                <h2>Smartphone</h2>
+
+                <p class="description">
+                    Powerful smartphone with excellent camera and battery.
+                </p>
+
+                <div class="rating">
+                    ⭐⭐⭐⭐☆
+                    <span>4.6</span>
+                </div>
+
+                <p class="price">
+
+                    ₹14,999
+
+                    <span class="old-price">
+                        ₹18,999
+                    </span>
+
+                    <span class="discount">
+                        21% OFF
+                    </span>
+
+                </p>
+
+                <button onclick="buyProduct('Smartphone')">
+                    Buy Now
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- Product 5 -->
+
+        <div class="product-card">
+
+            <img
+                src="https://images.unsplash.com/photo-1585386959984-a41552231693?auto=format&fit=crop&w=600&q=80"
+                alt="Premium Perfume"
+            >
+
+            <div class="product-info">
+
+                <h2>Premium Perfume</h2>
+
+                <p class="description">
+                    Long-lasting premium fragrance suitable for every occasion.
+                </p>
+
+                <div class="rating">
+                    ⭐⭐⭐⭐⭐
+                    <span>4.9</span>
+                </div>
+
+                <p class="price">
+
+                    ₹1,299
+
+                    <span class="old-price">
+                        ₹1,999
+                    </span>
+
+                    <span class="discount">
+                        35% OFF
+                    </span>
+
+                </p>
+
+                <button onclick="buyProduct('Premium Perfume')">
+                    Buy Now
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- Product 6 -->
+
+        <div class="product-card">
+
+            <img
+                src="https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=600&q=80"
+                alt="Travel Backpack"
+            >
+
+            <div class="product-info">
+
+                <h2>Travel Backpack</h2>
+
+                <p class="description">
+                    Spacious and durable backpack for college and travel.
+                </p>
+
+                <div class="rating">
+                    ⭐⭐⭐⭐☆
+                    <span>4.4</span>
+                </div>
+
+                <p class="price">
+
+                    ₹999
+
+                    <span class="old-price">
+                        ₹1,499
+                    </span>
+
+                    <span class="discount">
+                        33% OFF
+                    </span>
+
+                </p>
+
+                <button onclick="buyProduct('Travel Backpack')">
+                    Buy Now
+                </button>
+
+            </div>
+
+        </div>
+
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <p>
+            © 2026 My Product Store | Assignment 7
+        </p>
+
+    </footer>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+        // Buy Now Function
+
+        function buyProduct(productName) {
+
+            alert(
+                "You selected: " + productName +
+                "\n\nThank you for shopping with us!"
+            );
+
+        }
+
+    </script>
+
+
+</body>
+</html>
+```
